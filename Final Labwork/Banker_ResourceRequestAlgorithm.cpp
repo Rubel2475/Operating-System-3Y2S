@@ -29,7 +29,7 @@ int main(){
             //cout<<"P["<<i<<"]->R["<<j<<"]: ";
             cin>>Allocation[i][j];
             Need[i][j] = Max[i][j] - Allocation[i][j];
-            Available[j] = Available[j] - Allocation[i][j];
+            //Available[j] = Available[j] - Allocation[i][j];
             Work[j] = Available[j];
         }
         Finish[i] = 0;
