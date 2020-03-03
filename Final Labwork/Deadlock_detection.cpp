@@ -20,7 +20,7 @@ int main(){
         for(j=0; j<m; j++){
             cin>>Allocation[i][j];
             PrAlloc[i] = PrAlloc[i] + Allocation[i][j];
-            Available[j] = Available[j] - Allocation[i][j];
+            //Available[j] = Available[j] - Allocation[i][j];
             Work[j] = Available[j];
         }
         if(PrAlloc!=0)Finish[i] = 0;
