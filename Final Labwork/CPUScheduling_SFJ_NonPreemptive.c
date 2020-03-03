@@ -56,3 +56,74 @@ int main(){
     return 0;
 }
 
+
+
+//Another code (almost similar)
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+
+    int n,pro[20], waitT[20], burstT[20],turnAT[20],temp;
+    float total_WT=0,total_TAT=0;
+
+    cout << "Enter number of processes: ";
+    cin >> n;
+
+    for(int i=0; i<n; i++){
+        cout << "Enter process number & its burst time: ";
+        cout << "p";
+        cin >> pro[i] >> burstT[i];
+    }
+
+    waitT[0]=0;
+
+    for(int i=0; i<n; i++){
+        int pos=i;
+        for(int j=i+1; j<n; j++){
+            if(burstT[j]<burstT[pos]){
+                pos=j;
+            }
+            temp = burstT[i];
+            burstT[i] = burstT[pos];
+            burstT[pos] = temp;
+
+            temp = pro[i];
+            pro[i] = pro[pos];
+            pro[pos] = temp;
+        }
+    }
+
+    for(int i=0; i<n; i++){
+        waitT[i] = 0;
+        for(int j=0; j<i; j++){
+            waitT[i] = waitT[i] + burstT[j];
+        }
+    }
+
+    for(int i=0; i<n; i++){
+        total_WT = total_WT + waitT[i];
+        turnAT[i] = waitT[i] + burstT[i];
+        total_TAT = total_TAT + turnAT[i];
+    }
+
+    cout<< "\nProcess\t Burst time\tWaiting time\tTurnaroundtime\n";
+    for(int i=0; i<n; i++){
+        cout << pro[i] << "\t" << burstT[i] << "\t\t" << waitT[i] << "\t\t" << turnAT[i] << endl;
+    }
+
+    cout << "\nAverage waiting time: " << total_WT/n << endl;
+    cout << "\naverage  turnaroundtime: " << total_TAT/n << endl;
+
+    return 0;
+}
+
+/*
+4
+1 6
+2 8
+3 7
+4 3
+*/
+
